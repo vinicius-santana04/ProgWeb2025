@@ -1,0 +1,7 @@
+# Ignorar arquivos de compilação
+*.o
+*.exe
+*.out
+
+# Ignorar diretórios específicos
+/node_modules/
