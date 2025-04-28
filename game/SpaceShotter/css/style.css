@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+#space {
+  background-image: url("../assets/png/Background/starBackground.png");
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+#ship {
+  position: absolute;
+}
+
+.enemy-ship {
+  position: absolute;
+}
+#score {
+  position: absolute;
+  top: 30px;
+  left: 670px;
+  color: white;
+  font-size: 24px;
+  font-family: monospace;
+  z-index: 10;
+}
+#lives {
+  position: absolute;
+  top: 35px;
+  right: 670px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+#lives img {
+  width: 30px;
+  height: 30px;
+}
+
+.bullet {
+  width: 10px;
+  height: 50px;
+  position: absolute;
+  z-index: 10;
+}
+#start-message {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  color: black;
+  z-index: 100;
+  font-family: sans-serif;
+}
+#pause-message {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  color: black;
+  z-index: 100;
+  font-family: sans-serif;
+}
