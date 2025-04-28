@@ -5,3 +5,5 @@
 
 # Ignorar diretórios específicos
 /node_modules/
+index.html
+style.css

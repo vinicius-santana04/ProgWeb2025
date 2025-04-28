@@ -1,28 +1,13 @@
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
+.caixa {
+    background-color: #ccc;
+    border: 10px solid black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 80px;
     padding: 20px;
-    background-color: #f2f2f2;
-    justify-content: center;
-}
-
-table {
-    border: 1px solid black;
-    background-color: white;
-}
-
-th {
-    border: 1px solid black;
-    padding: 4px;
-}
-tr {
-    border: 1px solid black;
-}
-
-td {
-    border: 1px solid black;
-    padding: 8px 12px;
-    text-align: center;
+    width: 360px;
+    font-family: Arial;
+    font-size: 18px;
+    text-align: justify;
 }
