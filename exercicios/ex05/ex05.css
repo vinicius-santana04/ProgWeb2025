@@ -1,0 +1,13 @@
+.caixa {
+    background-color: #ccc;
+    border: 10px solid black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 80px;
+    padding: 20px;
+    width: 360px;
+    font-family: Arial;
+    font-size: 18px;
+    text-align: justify;
+}
