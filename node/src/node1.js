@@ -11,7 +11,6 @@ if (!diretorio) {
     process.exit(1);
 }
 
-
 function createLink(filename) {
     return `<a href="/${encodeURIComponent(filename)}">${filename}</a><br>\n`;
 }
