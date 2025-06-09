@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 validateEnv();
-
 const app = express();
 const PORT = process.env.PORT || 3333;
 
