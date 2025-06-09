@@ -11,7 +11,7 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3333;
 app.get('/', (req, res) => {
-    res.send('Hello World from TypeScript!');
+    res.send('Hello World!');
 });
 app.listen(PORT, () => {
     console.log(`Express app iniciada na porta ${PORT}.`);
