@@ -1,7 +1,10 @@
-import express, { Request, Response, Application } from 'express';
+import express, { Request, Response } from 'express';
+import validateEnv from './utils/validadeEnv';
 import dotenv from 'dotenv';
 
 dotenv.config();
+validateEnv();
+
 const app = express();
 const PORT = process.env.PORT || 3333;
 
