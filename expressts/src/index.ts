@@ -9,7 +9,9 @@ const PORT = process.env.PORT || 3333;
 const app = express();
 app.use(router);
 
-app.engine("handlebars", engine());
+app.engine("handlebars", engine({
+  helpers: require(`${__dirname}/views/helpers/helpers.ts`)
+}));
 app.set("view engine", "handlebars");
 app.set("views", `${__dirname}/views`);
 
