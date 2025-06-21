@@ -2,11 +2,16 @@ import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import router from './router/router';
 import { logMiddleware } from './middlewares/logs';
+import { engine } from 'express-handlebars';
 
 dotenv.config();
 const PORT = process.env.PORT || 3333;
 const app = express();
 app.use(router);
+
+app.engine("handlebars", engine());
+app.set("view engine", "handlebars");
+app.set("views", `${__dirname}/views`);
 
 // Middleware de log (troque entre 'simples' e 'completo')
 app.use(logMiddleware('completo'));
