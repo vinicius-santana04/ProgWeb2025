@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { loremIpsum } from 'lorem-ipsum';
 
 const index = (req: Request, res: Response) => {
-    res.end('Welcome to Web academy!');
+    res.end('Welcome!');
 };
 
 
@@ -22,7 +22,7 @@ const lorem = (req: Request, res: Response) => {
 const hb1 = (req: Request, res: Response) => {
   res.render('main/hb1', {
     mensagem: 'Olá, você está aprendendo Express + HBS!',
-    layout: false,
+    //layout: false,
   });
 };
 
@@ -31,7 +31,7 @@ const hb2 = (req: Request, res: Response) => {
     poweredByNodejs: true,
     name: 'Express',
     type: 'Framework',
-    layout: false,
+    //layout: false,
   });
 };
 
@@ -42,7 +42,7 @@ const hb3 = (req: Request, res: Response) => {
     { nome: 'Edleno Moura', sala: 1236 },
     { nome: 'Elaine Harada', sala: 1231 }
   ];
-  res.render('main/hb3', { profes, layout: false });
+  res.render('main/hb3', { profes });
 };
 
 const hb4 = (req: Request, res: Response) => {
@@ -55,7 +55,7 @@ const hb4 = (req: Request, res: Response) => {
     { name: 'Docker', type: 'Virtualization', poweredByNodejs: false },
     { name: 'Sequelize', type: 'ORM tool', poweredByNodejs: true },
   ];
-  res.render('main/hb4', { technologies, layout: false });
+  res.render('main/hb4', { technologies });
 };
 
 export default { index, lorem, hb1, hb2, hb3, hb4 };
