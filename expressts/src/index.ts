@@ -8,12 +8,12 @@ dotenv.config();
 const PORT = process.env.PORT || 3333;
 const app = express();
 app.use(router);
+app.use(express.static('src/public'))
 
 app.engine("handlebars", engine({
   helpers: require(`${__dirname}/views/helpers/helpers.ts`),
   layoutsDir: `${__dirname}/views/layouts`,
   defaultLayout: 'main',
-
 }));
 app.set("view engine", "handlebars");
 app.set("views", `${__dirname}/views`);
