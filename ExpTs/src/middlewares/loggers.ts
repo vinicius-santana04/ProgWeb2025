@@ -7,7 +7,7 @@ type LogFormat = 'simples' | 'completo';
 export function logMiddleware(format: LogFormat) {
   return (req: Request, res: Response, next: NextFunction) => {
     const logFolder = process.env.LOG_FOLDER || 'logs';
-    const logPath = path.join(logFolder, 'access.log');
+    const logPath = path.join(logFolder, 'logs.log');
 
     if (!fs.existsSync(logFolder)) {
       fs.mkdirSync(logFolder, { recursive: true });

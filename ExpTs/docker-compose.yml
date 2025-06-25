@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-game-app
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: senha123
+      MYSQL_DATABASE: game
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-game-data:/var/lib/mysql
+    networks:
+      - game-app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-game-app
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: senha123
+    ports:
+      - "8081:80"
+    networks:
+      - game-app-network
+
+volumes:
+  mysql-game-data:
+    driver: local
+
+networks:
+  game-app-network:
+    driver: bridge

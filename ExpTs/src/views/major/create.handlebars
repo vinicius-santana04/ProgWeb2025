@@ -1,0 +1,19 @@
+<h1>Adicionar Novo Curso</h1>
+<hr>
+
+<form action="/major/create" method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome do Curso</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="code" class="form-label">Código do Curso (4 caracteres)</label>
+        <input type="text" class="form-control" id="code" name="code" required minlength="4" maxlength="4">
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Descrição</label>
+        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+    </div>
+    <a href="/major" class="btn btn-secondary">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Salvar Curso</button>
+</form>

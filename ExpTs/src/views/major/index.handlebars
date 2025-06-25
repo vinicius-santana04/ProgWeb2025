@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Lista de Cursos</h1>
+    <a href="/major/create" class="btn btn-primary">Adicionar Novo Curso</a>
+</div>
+
+{{#if majors}}
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Nome do Curso</th>
+            <th scope="col">Código</th>
+            <th scope="col" class="text-end">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each majors}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.code}}</td>
+            <td class="text-end">
+                <a href="/major/read/{{this.id}}" class="btn btn-info btn-sm">Detalhes</a>
+                <a href="/major/update/{{this.id}}" class="btn btn-warning btn-sm">Editar</a>
+                
+                <button onclick="deletarCurso('{{this.id}}')">Deletar</button>                
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<div class="alert alert-info" role="alert">
+    Nenhum curso cadastrado ainda. <a href="/major/create" class="alert-link">Seja o primeiro a adicionar!</a>
+</div>
+{{/if}}

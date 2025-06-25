@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { loremIpsum } from 'lorem-ipsum';
 
 const index = (req: Request, res: Response) => {
-    res.end('Welcome!');
+    res.render('main/home');
 };
 
 
@@ -16,7 +16,10 @@ const lorem = (req: Request, res: Response) => {
     format: 'html',
   });
 
-  res.send(loremText);
+  res.render('main/lorem', {
+    pageTitle: 'Gerador de Lorem Ipsum',
+    loremText: loremText 
+  });
 };
 
 const about = (req: Request, res: Response) => {
@@ -35,7 +38,7 @@ const about = (req: Request, res: Response) => {
 
 const hb1 = (req: Request, res: Response) => {
   res.render('main/hb1', {
-    mensagem: 'Olá, você está aprendendo Express + HBS!',
+    mensagem: 'Universidade Federal do Amazonas',
     //layout: false,
   });
 };

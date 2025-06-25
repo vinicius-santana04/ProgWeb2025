@@ -1,0 +1,22 @@
+{{#if major}}
+<div class="card">
+    <div class="card-header">
+        <h2>Detalhes do Curso</h2>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{major.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Código: {{major.code}}</h6>
+        <p class="card-text">{{major.description}}</p>
+    </div>
+    <div class="card-footer text-muted">
+        <p>Cadastrado em: {{major.createdAt}}</p>
+        <p>Última atualização: {{major.updatedAt}}</p>
+        <a href="/major" class="btn btn-secondary">Voltar para a Lista</a>
+        <a href="/major/update/{{major.id}}" class="btn btn-warning">Editar</a>
+    </div>
+</div>
+{{else}}
+<div class="alert alert-danger" role="alert">
+    Curso não encontrado.
+</div>
+{{/if}}
