@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Shotter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/game.css">
+</head>
+<body>
+    <nav class="game-navbar">
+        <div>
+          <button type="button" class="btn btn-secondary btn-sm" id="back-to-lobby-btn" data-bs-toggle="modal" data-bs-target="#confirmExitModal">
+            Voltar ao Lobby
+          </button>
+        </div>
+
+        {{#if user}}
+            <div class="d-flex align-items-center gap-3">
+                <div class="user-info">
+                    Olá, <strong>{{user.name}}</strong>
+                </div>
+            </div>
+        {{/if}}
+    </nav>
+
+    <div class="game-wrapper">
+        {{{body}}}
+    </div>
+
+    <div class="game-legend">
+        Pressione 'P' para pausar
+    </div>
+
+    <div class="modal fade" id="confirmExitModal" tabindex="-1" aria-labelledby="confirmExitModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmExitModalLabel">Sair do Jogo</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Você tem certeza que deseja sair? Sua pontuação atual **não será salva**.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não, continuar jogando</button>
+            <a href="/lobby" class="btn btn-danger">Sim, sair</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

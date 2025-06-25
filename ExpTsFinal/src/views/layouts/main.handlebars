@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{pageTitle}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/lobby">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            {{#if isAuthenticated}}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ranking">Ranking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/major">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Usuários</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            HBs
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/hb1">HB1</a></li>
+                            <li><a class="dropdown-item" href="/hb2">HB2</a></li>
+                            <li><a class="dropdown-item" href="/hb3">HB3</a></li>
+                            <li><a class="dropdown-item" href="/hb4">HB4</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/cookie">Cookie</a></li>
+                            <li><a class="dropdown-item" href="/lorem/10">Lorem</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Olá, {{user.name}}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="/users/profile">Alterar dados cadastrais</a></li>
+                            <li><a class="dropdown-item" href="/users/password">Alterar senha</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="/logout" method="POST" class="d-inline">
+                                    <button type="submit" class="dropdown-item">Efetuar logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {{else}}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">Sobre</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            HBs
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/hb1">HB1</a></li>
+                            <li><a class="dropdown-item" href="/hb2">HB2</a></li>
+                            <li><a class="dropdown-item" href="/hb3">HB3</a></li>
+                            <li><a class="dropdown-item" href="/hb4">HB4</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/cookie">Cookie</a></li>
+                            <li><a class="dropdown-item" href="/lorem/10">Lorem</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="/users/create" class="btn btn-outline-light me-2">Criar Conta</a>
+                    <a href="/login" class="btn btn-primary">Login</a>
+                </div>
+            {{/if}}
+
+        </div>
+    </div>
+</nav>
+
+    <div class="container mt-4">
+        {{{body}}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/js/script.js"></script> 
+</body>
+</html>

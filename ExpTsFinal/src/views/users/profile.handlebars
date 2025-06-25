@@ -1,0 +1,44 @@
+<div class="container my-5" style="max-width: 600px;">
+    <h2>Alterar Dados Cadastrais</h2>
+    <p class="text-muted">Atualize suas informações pessoais abaixo.</p>
+
+    {{#if error}}
+        <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+    {{#if success}}
+        <div class="alert alert-success">{{success}}</div>
+    {{/if}}
+
+    <form action="/users/profile" method="POST" class="mt-4">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="name" name="name" value="{{user.name}}" required>
+            <label for="name">Nome Completo</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" name="email" value="{{user.email}}" required>
+            <label for="email">Email</label>
+        </div>
+
+        <div class="form-floating mb-4">
+            <select class="form-select" id="majorId" disabled>
+                {{#each majors}}
+                    <option value="{{this.id}}" {{#if (eq this.id ../user.majorId)}}selected{{/if}}>
+                        {{this.name}}
+                    </option>
+                {{/each}}
+            </select>
+            <label for="majorId">Curso (não pode ser alterado)</label>
+        </div>
+
+        <hr>
+        <p class="text-muted">Para salvar as alterações, por favor, confirme sua senha atual.</p>
+        <div class="form-floating mb-4">
+            <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+            <label for="currentPassword">Senha Atual para Confirmar</label>
+        </div>
+        <div class="d-grid gap-2">
+             <button type="submit" class="btn btn-primary btn-lg">Salvar Alterações</button>
+             <a href="/lobby" class="btn btn-outline-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>

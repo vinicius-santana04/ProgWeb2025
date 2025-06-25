@@ -1,0 +1,33 @@
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h1 class="display-4">Ranking - Top 10</h1>
+        <p class="lead text-muted">Veja os melhores jogadores da galáxia!</p>
+    </div>
+
+    {{#if users.length}}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" style="width: 10%;">Posição</th>
+                    <th scope="col">Jogador</th>
+                    <th scope="col" class="text-end">Pontuação Máxima</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each users}}
+                <tr>
+                    <th scope="row" class="fs-5">{{add @index 1}}º</th>
+                    <td>{{this.name}}</td>
+                    <td class="text-end fw-bold">{{this.highScore}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    {{else}}
+    <div class="alert alert-info text-center">
+        Ainda não há pontuações registradas. Seja o primeiro a jogar!
+    </div>
+    {{/if}}
+</div>

@@ -1,0 +1,65 @@
+{{#if major}}
+<div class="container my-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Detalhes do Curso</h4>
+            <a href="/major" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-arrow-left-circle-fill me-1"></i> Voltar para a Lista
+            </a>
+        </div>
+        <div class="card-body p-4">
+            <h2 class="card-title display-6">{{major.name}}</h2>
+            <h6 class="card-subtitle mb-3 text-muted">Código: {{major.code}}</h6>
+            
+            {{#if major.description}}
+                <h5 class="mt-4">Descrição</h5>
+                <p class="card-text fs-4 mt-1">{{major.description}}</p>
+            {{else}}
+                <p class="card-text text-muted fst-italic mt-4">Nenhuma descrição fornecida para este curso.</p>
+            {{/if}}
+        </div>
+        <div class="card-footer bg-light text-muted d-flex justify-content-between align-items-center">
+            <div>
+                <small>Criado em: {{major.createdAt}}</small>
+                <br>
+                <small>Última atualização: {{major.updatedAt}}</small>
+            </div>
+            <div class="d-flex gap-2">
+                <a href="/major/update/{{major.id}}" class="btn btn-warning" title="Editar Curso">
+                    <i class="bi bi-pencil-fill"></i> Editar
+                </a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-major-{{major.id}}" title="Excluir Curso">
+                    <i class="bi bi-trash-fill"></i> Excluir
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-delete-major-{{major.id}}" tabindex="-1" aria-labelledby="modalLabel-{{major.id}}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel-{{major.id}}">Confirmar Exclusão</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Você tem certeza que deseja excluir o curso <strong>{{major.name}}</strong>?</p>
+        <p class="text-danger"><small>Esta ação não pode ser desfeita e pode afetar utilizadores matriculados.</small></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" onclick="excluirItemEredirecionar('major', '{{major.id}}', '/major')">Sim, excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{else}}
+<div class="alert alert-danger text-center" role="alert">
+    <h4 class="alert-heading">Curso não encontrado!</h4>
+    <p>O curso que você está a tentar aceder não existe ou foi removido.</p>
+    <hr>
+    <a href="/major" class="btn btn-secondary">Voltar para a Lista de Cursos</a>
+</div>
+{{/if}}
