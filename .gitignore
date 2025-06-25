@@ -7,3 +7,4 @@
 # Ignorar diretórios específicos
 node_modules/
 logs/
+build/
