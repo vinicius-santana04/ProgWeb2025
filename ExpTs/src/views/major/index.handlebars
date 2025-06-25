@@ -1,34 +1,71 @@
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Lista de Cursos</h1>
-    <a href="/major/create" class="btn btn-primary">Adicionar Novo Curso</a>
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Lista de Cursos</h1>
+        <a href="/major/create" class="btn btn-primary">Adicionar Novo Curso</a>
+    </div>
+
+    {{#if error}}
+        <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+
+    {{#if majors}}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Nome do Curso</th>
+                    <th scope="col">Código</th>
+                    <th scope="col" class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each majors}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.code}}</td>
+                    <td class="text-end">
+                        <a href="/major/read/{{this.id}}" class="btn btn-info btn-sm" title="Detalhes">
+                            <i class="bi bi-eye-fill"></i>
+                        </a>
+                        <a href="/major/update/{{this.id}}" class="btn btn-warning btn-sm" title="Editar">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-user-{{this.id}}" title="Excluir">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    {{else}}
+        {{#unless error}}
+            <div class="alert alert-info" role="alert">
+                Nenhum curso cadastrado ainda. <a href="/major/create" class="alert-link">Seja o primeiro a adicionar!</a>
+            </div>
+        {{/unless}}
+    {{/if}}
 </div>
 
-{{#if majors}}
-<table class="table table-striped table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th scope="col">Nome do Curso</th>
-            <th scope="col">Código</th>
-            <th scope="col" class="text-end">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each majors}}
-        <tr>
-            <td>{{this.name}}</td>
-            <td>{{this.code}}</td>
-            <td class="text-end">
-                <a href="/major/read/{{this.id}}" class="btn btn-info btn-sm">Detalhes</a>
-                <a href="/major/update/{{this.id}}" class="btn btn-warning btn-sm">Editar</a>
-                
-                <button onclick="deletarCurso('{{this.id}}')">Deletar</button>                
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-{{else}}
-<div class="alert alert-info" role="alert">
-    Nenhum curso cadastrado ainda. <a href="/major/create" class="alert-link">Seja o primeiro a adicionar!</a>
+{{#each majors}}
+<div class="modal fade" id="modal-delete-{{this.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalLabel-{{this.id}}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalLabel-{{this.id}}">Confirmar Exclusão</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Você tem certeza que deseja deletar o curso <strong>{{this.name}}</strong>?
+        <br>
+        <small class="text-muted">Esta ação não pode ser desfeita.</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" onclick="excluirItem('major', '{{this.id}}')">Sim, deletar curso</button>
+      </div>
+    </div>
+  </div>
 </div>
-{{/if}}
+{{/each}}

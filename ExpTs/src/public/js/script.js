@@ -1,24 +1,39 @@
-function deletarCurso(idDoCursoParaDeletar) {
-    const confirmacao = window.confirm("Você tem certeza que deseja deletar este curso? Esta ação não pode ser desfeita.");
+function excluirItemEredirecionar(tipo, id, urlDeRedirecionamento) {
+    fetch(`/${tipo}/remove/${id}`, {
+        method: 'POST'
+    })
+    .then(async (response) => {
+        if (response.ok) {
+            console.log(`${tipo} com id ${id} foi excluído com sucesso.`);
+            window.location.href = urlDeRedirecionamento;
+        } else {
+            const errorData = await response.json();
+            alert(errorData.message || `Erro ao excluir o ${tipo}.`);
+        }
+    })
+    .catch(error => {
+        console.error('Erro de conexão:', error);
+        alert('Um erro de conexão impediu a exclusão.');
+    });
+}
 
-    if (confirmacao) {
-        fetch(`/major/remove/${idDoCursoParaDeletar}`, {
-            method: 'POST'
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('Curso deletado com sucesso');
-                window.location.reload();
-            } else {
-                console.error('Ocorreu um erro ao tentar deletar o curso.');
-                alert('Não foi possível deletar o curso. Tente novamente.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro na requisição fetch:', error);
-            alert('Um erro de conexão impediu a exclusão do curso.');
-        });
-    } else {
-        console.log('Ação de deletar foi cancelada pelo usuário.');
-    }
+function excluirItem(tipo, id) {
+    fetch(`/${tipo}/remove/${id}`, {
+        method: 'POST'
+    })
+    .then(async (response) => {
+        if (response.ok) {
+            console.log(`${tipo} com id ${id} foi excluído com sucesso.`);
+            window.location.reload();
+        } else {
+            const errorData = await response.json();
+            console.error(`Erro ao excluir o ${tipo}. Status: ${response.status}`);
+            
+            alert(errorData.message); 
+        }
+    })
+    .catch(error => {
+        console.error('Erro de conexão na requisição fetch:', error);
+        alert('Um erro de conexão impediu a exclusão.');
+    });
 }

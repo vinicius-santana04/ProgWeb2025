@@ -1,0 +1,109 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background-color: #0d1117;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-navbar {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    background-color: #212529;
+    color: white;
+}
+
+.game-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#space {
+    position: relative; 
+    overflow: hidden;  
+    background-image: url("../assets/png/Background/starBackground.png");
+    background-color: black;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+#ship, .enemy-ship, .bullet {
+    position: absolute;
+}
+
+.bullet {
+    width: 10px;
+    height: 50px;
+    z-index: 5;
+}
+
+.game-hud, #start-message, #pause-message {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 10;
+    color: white;
+    text-align: center;
+}
+
+.game-hud {
+    top: 20px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+#score {
+    font-size: 24px;
+    font-family: monospace;
+}
+
+#lives {
+    display: flex;
+    gap: 10px;
+}
+
+#lives img {
+    width: 30px;
+    height: 30px;
+}
+
+#start-message, #pause-message {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+}
+
+#pause-message {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+}
+#back-to-lobby-btn {
+    display: none;
+}
+.game-legend {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    z-index: 100;
+}

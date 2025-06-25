@@ -1,0 +1,93 @@
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Lista de Usuários</h1>
+        <a href="/users/create" class="btn btn-primary">Adicionar Novo Usuário</a>
+    </div>
+
+    {{#if error}}
+        <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+
+    {{#if users}}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Curso</th>
+                    <th scope="col" class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each users}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.major.name}}</td>
+                    <td class="text-end">
+                        <a href="/users/read/{{this.id}}" class="btn btn-info btn-sm" title="Detalhes">
+                            <i class="bi bi-eye-fill"></i>
+                        </a>
+                        <a href="/users/update/{{this.id}}" class="btn btn-warning btn-sm" title="Editar">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-user-{{this.id}}" title="Excluir">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    {{else}}
+        {{#unless error}}
+            <div class="alert alert-info" role="alert">
+                Nenhum usuário cadastrado ainda. <a href="/users/create" class="alert-link">Seja o primeiro a adicionar!</a>
+            </div>
+        {{/unless}}
+    {{/if}}
+</div>
+
+
+{{#each users}}
+<div class="modal fade" id="modal-delete-user-{{this.id}}" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmar Exclusão</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Você tem certeza que deseja excluir o usuário <strong>{{this.name}}</strong>?</p>
+        <p class="text-danger"><small>Esta ação não pode ser desfeita.</small></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-user-{{this.id}}" title="Excluir" onclick="excluirItem('users', '{{this.id}}')"> Sim, excluir. </button>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
+
+<script>
+function excluirItem(tipo, id) {
+    fetch(`/${tipo}/remove/${id}`, {
+        method: 'POST'
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log(`${tipo} com id ${id} foi excluído com sucesso.`);
+            window.location.reload();
+        } else {
+            alert(`Erro ao excluir o ${tipo}.`);
+        }
+    })
+    .catch(error => {
+        console.error('Erro na requisição:', error);
+        alert('Erro de conexão ao tentar excluir.');
+    });
+}
+</script>
